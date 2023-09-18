@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // get media
-const getMedia = (request, response, fileName, fileExtension) => {
+const getMedia = (request, response, fileName, fileType, fileExtension) => {
   // path to media file
   const file = path.resolve(__dirname, `../client/${fileName}.${fileExtension}`);
 
@@ -40,7 +40,7 @@ const getMedia = (request, response, fileName, fileExtension) => {
       'Content-Range': `bytes ${start}-${end}/${total}`,
       'Accept-Ranges': 'bytes',
       'Content-Length': chunksize,
-      'Content-Type': 'video/mp4',
+      'Content-Type': `${fileType}/${fileExtension}`,
     });
 
     // stream media
